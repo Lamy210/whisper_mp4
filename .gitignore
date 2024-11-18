@@ -1,0 +1,5 @@
+.env
+*.mp4
+*.txt
+*.wav
+*.lfs  # Git LFS用の不要なファイルも追加

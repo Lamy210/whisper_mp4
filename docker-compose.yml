@@ -1,0 +1,22 @@
+services:
+  transcription:
+    build:
+      context: .
+      args:
+        HTTP_PROXY: http://wwwproxy.osakac.ac.jp:8080
+        HTTPS_PROXY: http://wwwproxy.osakac.ac.jp:8080
+    environment:
+      - HTTP_PROXY=http://wwwproxy.osakac.ac.jp:8080
+      - HTTPS_PROXY=http://wwwproxy.osakac.ac.jp:8080
+    env_file:
+      - .env
+    volumes:
+      - .:/root/src
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    stdin_open: true   # 追加: 標準入力を開く
+    tty: true          # 追加: 擬似ターミナルを割り当てる
+    command: sleep infinity  # 追加: コンテナを終了させないコマンド
